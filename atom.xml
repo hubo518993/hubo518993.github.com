@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.linkio.cc/archives/"/>
-  <updated>2016-06-01T15:15:55.000Z</updated>
+  <updated>2016-06-01T15:19:45.000Z</updated>
   <id>http://blog.linkio.cc/archives/</id>
   
   <author>
@@ -20,23 +20,23 @@
     <link href="http://blog.linkio.cc/archives/2016/06/01/%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
     <id>http://blog.linkio.cc/archives/2016/06/01/使用Hexo-Github搭建自己的博客/</id>
     <published>2016-06-01T13:27:17.000Z</published>
-    <updated>2016-06-01T15:15:55.000Z</updated>
+    <updated>2016-06-01T15:19:45.000Z</updated>
     
-    <content type="html">&lt;p&gt;#前言&lt;br&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo&lt;/a&gt;与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。&lt;/p&gt;
-&lt;p&gt;#前期环境搭建&lt;br&gt;由于使用的是hexo与github page的搭配，所以首先需要安装git。&lt;/p&gt;
-&lt;p&gt;##安装Git&lt;br&gt;通过Homebrew安装Git&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo&lt;/a&gt;与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。&lt;/p&gt;
+&lt;h1 id=&quot;前期环境搭建&quot;&gt;&lt;a href=&quot;#前期环境搭建&quot; class=&quot;headerlink&quot; title=&quot;前期环境搭建&quot;&gt;&lt;/a&gt;前期环境搭建&lt;/h1&gt;&lt;p&gt;由于使用的是hexo与github page的搭配，所以首先需要安装git。&lt;/p&gt;
+&lt;h2 id=&quot;安装Git&quot;&gt;&lt;a href=&quot;#安装Git&quot; class=&quot;headerlink&quot; title=&quot;安装Git&quot;&gt;&lt;/a&gt;安装Git&lt;/h2&gt;&lt;p&gt;通过Homebrew安装Git&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo brew install git
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;或者通过&lt;a href=&quot;https://desktop.github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub for Mac&lt;/a&gt;网站下载该工具。  &lt;/p&gt;
-&lt;p&gt;##安装Node.js&lt;br&gt;使用Homebrew安装node.js    &lt;/p&gt;
+&lt;h2 id=&quot;安装Node-js&quot;&gt;&lt;a href=&quot;#安装Node-js&quot; class=&quot;headerlink&quot; title=&quot;安装Node.js&quot;&gt;&lt;/a&gt;安装Node.js&lt;/h2&gt;&lt;p&gt;使用Homebrew安装node.js    &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;brew install node
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;检查node.js是否已经安装完成  &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;node --version
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;如果看到版本号，那么node.js就算安转完成了。&lt;/p&gt;
-&lt;p&gt;##配置GitHub Page&lt;br&gt;首先注册一个github帐号 &lt;del&gt;废话&lt;/del&gt;，然后新建一个repository，&lt;strong&gt;注意&lt;/strong&gt;repository name必须为&lt;strong&gt;&lt;em&gt;username.github.com&lt;/em&gt;&lt;/strong&gt;&lt;br&gt;例如你的用户名是&lt;code&gt;Evrins&lt;/code&gt;那么你的repository name就是&lt;code&gt;Evrins.github.com&lt;/code&gt;新建完repository之后点击repository的Settings在GitHub Pages上将这个页面自动生成。如果在游览器输入&lt;code&gt;http://evrins.github.io/&lt;/code&gt;能看到初始化的页面，那么前期的搭建工作就算成功了。&lt;/p&gt;
-&lt;p&gt;#安装Hexo&lt;br&gt;由于前期安装了node.js，所以安装hexo的时候就简单很多。使用终端输入  &lt;/p&gt;
+&lt;h2 id=&quot;配置GitHub-Page&quot;&gt;&lt;a href=&quot;#配置GitHub-Page&quot; class=&quot;headerlink&quot; title=&quot;配置GitHub Page&quot;&gt;&lt;/a&gt;配置GitHub Page&lt;/h2&gt;&lt;p&gt;首先注册一个github帐号 &lt;del&gt;废话&lt;/del&gt;，然后新建一个repository，&lt;strong&gt;注意&lt;/strong&gt;repository name必须为&lt;strong&gt;&lt;em&gt;username.github.com&lt;/em&gt;&lt;/strong&gt;&lt;br&gt;例如你的用户名是&lt;code&gt;Evrins&lt;/code&gt;那么你的repository name就是&lt;code&gt;Evrins.github.com&lt;/code&gt;新建完repository之后点击repository的Settings在GitHub Pages上将这个页面自动生成。如果在游览器输入&lt;code&gt;http://evrins.github.io/&lt;/code&gt;能看到初始化的页面，那么前期的搭建工作就算成功了。&lt;/p&gt;
+&lt;h1 id=&quot;安装Hexo&quot;&gt;&lt;a href=&quot;#安装Hexo&quot; class=&quot;headerlink&quot; title=&quot;安装Hexo&quot;&gt;&lt;/a&gt;安装Hexo&lt;/h1&gt;&lt;p&gt;由于前期安装了node.js，所以安装hexo的时候就简单很多。使用终端输入  &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo npm install hexo-cli -g
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这样hexo本体就算安装完成了。为了更好的扩展hexo的功能，也可以在这时侯安装一部分的插件  &lt;/p&gt;
@@ -55,20 +55,20 @@ npm install hexo-generator-feed@1 --save
 npm install hexo-generator-sitemap@1 --save
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;为了发布到github page，hexo-deployer-git是必须安装的插件。&lt;/p&gt;
-&lt;p&gt;##配置Hexo&lt;br&gt;在终端输入&lt;br&gt;&lt;code&gt;mkdir hexo&lt;/code&gt;&lt;br&gt;创建hexo的主文件夹&lt;br&gt;&lt;code&gt;cd hexo&lt;/code&gt;&lt;br&gt;进入hexo文件夹&lt;br&gt;&lt;code&gt;hexo init&lt;/code&gt;&lt;br&gt;初始化hexo&lt;br&gt;&lt;code&gt;npm install&lt;/code&gt;&lt;br&gt;安装依赖包&lt;br&gt;&lt;code&gt;hexo server&lt;/code&gt;&lt;br&gt;然后在游览器中输入&lt;a href=&quot;http://localhost:4000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;localhost:4000&lt;/a&gt;,查看hexo在本地运行的情况。  &lt;/p&gt;
-&lt;p&gt;##配置全局 _config.yml&lt;br&gt;在hexo文件夹下，有&lt;code&gt;_config.yml&lt;/code&gt;的文件，使用记事本等软件打开之后可以看到hexo的配置情况。具体配置情况可以再hexo的&lt;a href=&quot;https://hexo.io/zh-cn/docs/configuration.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;来进行查阅。主要说下关于发布到github上的几点配置。&lt;br&gt;在&lt;code&gt;_config.yml&lt;/code&gt;文件的最后，有&lt;code&gt;Deployment&lt;/code&gt;字段，修改成&lt;/p&gt;
+&lt;h2 id=&quot;配置Hexo&quot;&gt;&lt;a href=&quot;#配置Hexo&quot; class=&quot;headerlink&quot; title=&quot;配置Hexo&quot;&gt;&lt;/a&gt;配置Hexo&lt;/h2&gt;&lt;p&gt;在终端输入&lt;br&gt;&lt;code&gt;mkdir hexo&lt;/code&gt;&lt;br&gt;创建hexo的主文件夹&lt;br&gt;&lt;code&gt;cd hexo&lt;/code&gt;&lt;br&gt;进入hexo文件夹&lt;br&gt;&lt;code&gt;hexo init&lt;/code&gt;&lt;br&gt;初始化hexo&lt;br&gt;&lt;code&gt;npm install&lt;/code&gt;&lt;br&gt;安装依赖包&lt;br&gt;&lt;code&gt;hexo server&lt;/code&gt;&lt;br&gt;然后在游览器中输入&lt;a href=&quot;http://localhost:4000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;localhost:4000&lt;/a&gt;,查看hexo在本地运行的情况。  &lt;/p&gt;
+&lt;h2 id=&quot;配置全局-config-yml&quot;&gt;&lt;a href=&quot;#配置全局-config-yml&quot; class=&quot;headerlink&quot; title=&quot;配置全局 _config.yml&quot;&gt;&lt;/a&gt;配置全局 _config.yml&lt;/h2&gt;&lt;p&gt;在hexo文件夹下，有&lt;code&gt;_config.yml&lt;/code&gt;的文件，使用记事本等软件打开之后可以看到hexo的配置情况。具体配置情况可以再hexo的&lt;a href=&quot;https://hexo.io/zh-cn/docs/configuration.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;来进行查阅。主要说下关于发布到github上的几点配置。&lt;br&gt;在&lt;code&gt;_config.yml&lt;/code&gt;文件的最后，有&lt;code&gt;Deployment&lt;/code&gt;字段，修改成&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;deploy:
   &lt;span class=&quot;built_in&quot;&gt;type&lt;/span&gt;: git
   repo: [your github page repository].git
   branch: master
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;，在配置文件中的&lt;code&gt;:&lt;/code&gt;之后需要加一个空格处理。&lt;/p&gt;
-&lt;p&gt;##部署Hexo&lt;br&gt;进如hexo文件夹，在终端输入&lt;br&gt;&lt;code&gt;hexo g&lt;/code&gt;&lt;br&gt;生成页面&lt;br&gt;&lt;code&gt;hexo d&lt;/code&gt;&lt;br&gt;部署页面到指定的服务器，这里就是我们的github page。快去&lt;code&gt;http://evrins.github.io/&lt;/code&gt;看看你部署的hexo吧^.^&lt;/p&gt;
+&lt;h2 id=&quot;部署Hexo&quot;&gt;&lt;a href=&quot;#部署Hexo&quot; class=&quot;headerlink&quot; title=&quot;部署Hexo&quot;&gt;&lt;/a&gt;部署Hexo&lt;/h2&gt;&lt;p&gt;进如hexo文件夹，在终端输入&lt;br&gt;&lt;code&gt;hexo g&lt;/code&gt;&lt;br&gt;生成页面&lt;br&gt;&lt;code&gt;hexo d&lt;/code&gt;&lt;br&gt;部署页面到指定的服务器，这里就是我们的github page。快去&lt;code&gt;http://evrins.github.io/&lt;/code&gt;看看你部署的hexo吧^.^&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;#前言&lt;br&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot;
     
     </summary>
     

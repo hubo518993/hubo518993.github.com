@@ -325,21 +325,21 @@
       
         
           
-            <p>#前言<br>看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在<a href="http://gold.xitu.io/" target="_blank" rel="external">掘金</a>上发现了一篇基于<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。</p>
-<p>#前期环境搭建<br>由于使用的是hexo与github page的搭配，所以首先需要安装git。</p>
-<p>##安装Git<br>通过Homebrew安装Git</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在<a href="http://gold.xitu.io/" target="_blank" rel="external">掘金</a>上发现了一篇基于<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。</p>
+<h1 id="前期环境搭建"><a href="#前期环境搭建" class="headerlink" title="前期环境搭建"></a>前期环境搭建</h1><p>由于使用的是hexo与github page的搭配，所以首先需要安装git。</p>
+<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>通过Homebrew安装Git</p>
 <pre><code class="bash">sudo brew install git
 </code></pre>
 <p>或者通过<a href="https://desktop.github.com/" target="_blank" rel="external">GitHub for Mac</a>网站下载该工具。  </p>
-<p>##安装Node.js<br>使用Homebrew安装node.js    </p>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>使用Homebrew安装node.js    </p>
 <pre><code class="bash">brew install node
 </code></pre>
 <p>检查node.js是否已经安装完成  </p>
 <pre><code class="bash">node --version
 </code></pre>
 <p>如果看到版本号，那么node.js就算安转完成了。</p>
-<p>##配置GitHub Page<br>首先注册一个github帐号 <del>废话</del>，然后新建一个repository，<strong>注意</strong>repository name必须为<strong><em>username.github.com</em></strong><br>例如你的用户名是<code>Evrins</code>那么你的repository name就是<code>Evrins.github.com</code>新建完repository之后点击repository的Settings在GitHub Pages上将这个页面自动生成。如果在游览器输入<code>http://evrins.github.io/</code>能看到初始化的页面，那么前期的搭建工作就算成功了。</p>
-<p>#安装Hexo<br>由于前期安装了node.js，所以安装hexo的时候就简单很多。使用终端输入  </p>
+<h2 id="配置GitHub-Page"><a href="#配置GitHub-Page" class="headerlink" title="配置GitHub Page"></a>配置GitHub Page</h2><p>首先注册一个github帐号 <del>废话</del>，然后新建一个repository，<strong>注意</strong>repository name必须为<strong><em>username.github.com</em></strong><br>例如你的用户名是<code>Evrins</code>那么你的repository name就是<code>Evrins.github.com</code>新建完repository之后点击repository的Settings在GitHub Pages上将这个页面自动生成。如果在游览器输入<code>http://evrins.github.io/</code>能看到初始化的页面，那么前期的搭建工作就算成功了。</p>
+<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><p>由于前期安装了node.js，所以安装hexo的时候就简单很多。使用终端输入  </p>
 <pre><code class="bash">sudo npm install hexo-cli -g
 </code></pre>
 <p>这样hexo本体就算安装完成了。为了更好的扩展hexo的功能，也可以在这时侯安装一部分的插件  </p>
@@ -358,15 +358,15 @@ npm install hexo-generator-feed@1 --save
 npm install hexo-generator-sitemap@1 --save
 </code></pre>
 <p>为了发布到github page，hexo-deployer-git是必须安装的插件。</p>
-<p>##配置Hexo<br>在终端输入<br><code>mkdir hexo</code><br>创建hexo的主文件夹<br><code>cd hexo</code><br>进入hexo文件夹<br><code>hexo init</code><br>初始化hexo<br><code>npm install</code><br>安装依赖包<br><code>hexo server</code><br>然后在游览器中输入<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>,查看hexo在本地运行的情况。  </p>
-<p>##配置全局 _config.yml<br>在hexo文件夹下，有<code>_config.yml</code>的文件，使用记事本等软件打开之后可以看到hexo的配置情况。具体配置情况可以再hexo的<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官网</a>来进行查阅。主要说下关于发布到github上的几点配置。<br>在<code>_config.yml</code>文件的最后，有<code>Deployment</code>字段，修改成</p>
+<h2 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h2><p>在终端输入<br><code>mkdir hexo</code><br>创建hexo的主文件夹<br><code>cd hexo</code><br>进入hexo文件夹<br><code>hexo init</code><br>初始化hexo<br><code>npm install</code><br>安装依赖包<br><code>hexo server</code><br>然后在游览器中输入<a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a>,查看hexo在本地运行的情况。  </p>
+<h2 id="配置全局-config-yml"><a href="#配置全局-config-yml" class="headerlink" title="配置全局 _config.yml"></a>配置全局 _config.yml</h2><p>在hexo文件夹下，有<code>_config.yml</code>的文件，使用记事本等软件打开之后可以看到hexo的配置情况。具体配置情况可以再hexo的<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">官网</a>来进行查阅。主要说下关于发布到github上的几点配置。<br>在<code>_config.yml</code>文件的最后，有<code>Deployment</code>字段，修改成</p>
 <pre><code class="bash">deploy:
   <span class="built_in">type</span>: git
   repo: [your github page repository].git
   branch: master
 </code></pre>
 <p><strong>注意</strong>，在配置文件中的<code>:</code>之后需要加一个空格处理。</p>
-<p>##部署Hexo<br>进如hexo文件夹，在终端输入<br><code>hexo g</code><br>生成页面<br><code>hexo d</code><br>部署页面到指定的服务器，这里就是我们的github page。快去<code>http://evrins.github.io/</code>看看你部署的hexo吧^.^</p>
+<h2 id="部署Hexo"><a href="#部署Hexo" class="headerlink" title="部署Hexo"></a>部署Hexo</h2><p>进如hexo文件夹，在终端输入<br><code>hexo g</code><br>生成页面<br><code>hexo d</code><br>部署页面到指定的服务器，这里就是我们的github page。快去<code>http://evrins.github.io/</code>看看你部署的hexo吧^.^</p>
 
           
         
