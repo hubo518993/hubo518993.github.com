@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://blog.linkio.cc/archives/"/>
   <updated>2016-06-01T07:02:09.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://blog.linkio.cc/archives/</id>
   
   <author>
     <name>胡波</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/06/01/hello-world/"/>
-    <id>http://yoursite.com/2016/06/01/hello-world/</id>
+    <link href="http://blog.linkio.cc/archives/2016/06/01/hello-world/"/>
+    <id>http://blog.linkio.cc/archives/2016/06/01/hello-world/</id>
     <published>2016-06-01T07:02:09.000Z</published>
     <updated>2016-06-01T07:02:09.000Z</updated>
     
