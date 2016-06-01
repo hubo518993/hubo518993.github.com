@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.linkio.cc/archives/"/>
-  <updated>2016-06-01T07:02:09.000Z</updated>
+  <updated>2016-06-01T15:13:04.000Z</updated>
   <id>http://blog.linkio.cc/archives/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Hexo+Github搭建自己的博客</title>
+    <link href="http://blog.linkio.cc/archives/2016/06/01/%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://blog.linkio.cc/archives/2016/06/01/使用Hexo-Github搭建自己的博客/</id>
+    <published>2016-06-01T13:27:17.000Z</published>
+    <updated>2016-06-01T15:13:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;#前言&lt;br&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo&lt;/a&gt;与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。&lt;/p&gt;
+&lt;p&gt;#前期环境搭建&lt;br&gt;由于使用的是hexo与github page的搭配，所以首先需要安装git。&lt;/p&gt;
+&lt;p&gt;##安装Git&lt;br&gt;通过Homebrew安装Git&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo brew install git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;```  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;或者通过[GitHub for Mac](https://desktop.github.com/)网站下载该工具。  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;##安装Node.js&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;使用Homebrew安装node.js&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;brew install node&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;检查node.js是否已经安装完成  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`node --version`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如果看到版本号，那么node.js就算安转完成了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;##配置GitHub Page&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;首先注册一个github帐号 &amp;lt;del&amp;gt;废话&amp;lt;/del&amp;gt;，然后新建一个repository，**注意**repository name必须为***username.github.com***  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;例如你的用户名是`Evrins`那么你的repository name就是`Evrins.github.com`新建完repository之后点击repository的Settings在GitHub Pages上将这个页面自动生成。如果在游览器输入`http://evrins.github.io/`能看到初始化的页面，那么前期的搭建工作就算成功了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#安装Hexo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;由于前期安装了node.js，所以安装hexo的时候就简单很多。使用终端输入&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;sudo npm install hexo-cli -g&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;这样hexo本体就算安装完成了。为了更好的扩展hexo的功能，也可以在这时侯安装一部分的插件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;npm install hexo-generator-index –save&lt;br&gt;npm install hexo-generator-archive –save&lt;br&gt;npm install hexo-generator-category –save&lt;br&gt;npm install hexo-generator-tag –save&lt;br&gt;npm install hexo-server –save&lt;br&gt;npm install hexo-deployer-git –save&lt;br&gt;npm install hexo-deployer-heroku –save&lt;br&gt;npm install hexo-deployer-rsync –save&lt;br&gt;npm install hexo-deployer-openshift –save&lt;br&gt;npm install hexo-renderer-marked@0.2 –save&lt;br&gt;npm install hexo-renderer-stylus@0.2 –save&lt;br&gt;npm install hexo-generator-feed@1 –save&lt;br&gt;npm install hexo-generator-sitemap@1 –save&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;为了发布到github page，hexo-deployer-git是必须安装的插件。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;##配置Hexo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在终端输入  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`mkdir hexo`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;创建hexo的主文件夹  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`cd hexo`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;进入hexo文件夹  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`hexo init`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;初始化hexo  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`npm install`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;安装依赖包  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;`hexo server`  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;然后在游览器中输入[localhost:4000](http://localhost:4000),查看hexo在本地运行的情况。  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;##配置全局 _config.yml&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在hexo文件夹下，有`_config.yml`的文件，使用记事本等软件打开之后可以看到hexo的配置情况。具体配置情况可以再hexo的[官网](https://hexo.io/zh-cn/docs/configuration.html)来进行查阅。主要说下关于发布到github上的几点配置。  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;在`_config.yml`文件的最后，有`Deployment`字段，修改成&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;deploy:&lt;br&gt;  type: git&lt;br&gt;  repo: [your github page repository].git&lt;br&gt;  branch: master&lt;br&gt;&lt;code&gt;``  
+**注意**，在配置文件中的&lt;/code&gt;:`之后需要加一个空格处理。&lt;/p&gt;
+&lt;p&gt;##部署Hexo&lt;br&gt;进如hexo文件夹，在终端输入&lt;br&gt;&lt;code&gt;hexo g&lt;/code&gt;&lt;br&gt;生成页面&lt;br&gt;&lt;code&gt;hexo d&lt;/code&gt;&lt;br&gt;部署页面到指定的服务器，这里就是我们的github page。快去&lt;code&gt;http://evrins.github.io/&lt;/code&gt;看看你部署的hexo吧^.^&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#前言&lt;br&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://blog.linkio.cc/archives/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://blog.linkio.cc/archives/tags/hexo/"/>
+    
+      <category term="github" scheme="http://blog.linkio.cc/archives/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
