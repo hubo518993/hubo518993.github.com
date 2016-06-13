@@ -255,6 +255,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/13/CordovaforiOS项目搭建/" itemprop="url">
+                  Cordova for iOS项目搭建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-13T11:12:19+08:00" content="2016-06-13">
+              2016-06-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/13/CordovaforiOS项目搭建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/13/CordovaforiOS项目搭建/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Apache Cordova提供了一组设备相关的API，通过这组API，移动应用能够以JavaScript访问原生的设备功能，如摄像头、麦克风等。Cordova还提供了一组统一的JavaScript类库，以及为这些类库所用的设备相关的原生后台代码。</p>
+<h1 id="Cordova-for-iOS环境搭建"><a href="#Cordova-for-iOS环境搭建" class="headerlink" title="Cordova for iOS环境搭建"></a>Cordova for iOS环境搭建</h1><p>在<a href="https://cordova.apache.org/" target="_blank" rel="external">Apache Cordova</a>官网上可以看到官方的安装教程。使用官方生成的项目，文件结构更规范，适合初学者学习。本文使用的是cocoapods这个第三方包管理软件。<br>首先是安装cocoapods，方法在<a href="https://cocoapods.org/" target="_blank" rel="external">官网</a>可以找到，最新版本是1.0.1。<br>然后通过Xcode创建一个新的项目，在项目文件同一层新建一个<code>Podfile</code>文件，使用文本编辑器添加一句<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pod</span> <span class="string">'Cordova'</span>, <span class="string">'~&gt; 4.0.1'</span></span><br></pre></td></tr></table></figure></p>
+<p>之后在终端输入<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="keyword">install</span></span><br></pre></td></tr></table></figure></p>
+<p>等待提示完成即可。</p>
+<h1 id="创建Config-xml"><a href="#创建Config-xml" class="headerlink" title="创建Config.xml"></a>创建Config.xml</h1><p>在工程文件根目录，创建一个xml文件，命名为<code>Config.xml</code>。Config.xml主要用来配置cordova的全局属性，包括申明插件。内容如下<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">'1.0'</span> encoding=<span class="string">'utf-8'</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">widget</span> <span class="attr">id</span>=<span class="string">"com.iclass.cordova"</span> <span class="attr">version</span>=<span class="string">"1.0.0"</span> <span class="attr">ios-CFBundleVersion</span>=<span class="string">"0.1.3"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/ns/widgets"</span> <span class="attr">xmlns:gap</span>=<span class="string">"http://phonegap.com/ns/1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"KeyboardDisplayRequiresUserAction"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"SuppressesIncrementalRendering"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"UIWebViewBounce"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"TopActivityIndicator"</span> <span class="attr">value</span>=<span class="string">"gray"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"EnableLocation"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"EnableViewportScale"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"AutoHideSplashScreen"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"ShowSplashScreenSpinner"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"MediaPlaybackRequiresUserAction"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"AllowInlineMediaPlayback"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"OpenAllWhitelistURLsInWebView"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preference</span> <span class="attr">name</span>=<span class="string">"BackupWebStorage"</span> <span class="attr">value</span>=<span class="string">"cloud"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Cordova<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span> 1 <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span> <span class="attr">email</span>=<span class="string">"523444337@qq.com"</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>  Link	<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">access</span> <span class="attr">origin</span>=<span class="string">"*"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">feature</span> <span class="attr">name</span>=<span class="string">"LocalStorage"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"ios-package"</span> <span class="attr">value</span>=<span class="string">"CDVLocalStorage"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">feature</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">feature</span> <span class="attr">name</span>=<span class="string">"ExtraInfo"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"ios-package"</span> <span class="attr">value</span>=<span class="string">"ExtraInfo"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">feature</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">widget</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>几个主要设置的解释：</p>
+<ul>
+<li><code>preference</code> 选项设置。cordova其实就是一个游览器，而这些参数就是用来配置游览器功能的。根据平台不同，参数也会有所差别。具体<a href="https://cordova.apache.org/docs/en/2.7.0/guide/project-settings/ios/" target="_blank" rel="external">查看</a></li>
+<li><code>access</code> 域限制设置。设置为<code>*</code>代表可以访问任何域。</li>
+<li><code>feature</code> 申明插件。</li>
+<li><code>content</code> 应用入口页面。不设置默认为<code>www/index.html</code></li>
+</ul>
+<h1 id="将HTML文件添加到工程"><a href="#将HTML文件添加到工程" class="headerlink" title="将HTML文件添加到工程"></a>将HTML文件添加到工程</h1><p>将整个www文件直接拖入工程，选择如下。<img src="http://o84q9uo1o.bkt.clouddn.com/QQ20160613-3%402x.png" alt=""><br>最后你的www文件应该为蓝色，而非group的黄色。如果使用<code>create groups</code>，则会在加载index.html的时候提示无法找到该页面。run一下，看看是否出现你想要的页面了吧^^</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/02/3DTouch开发/" itemprop="url">
                   3D Touch开发
                 </a>
@@ -804,7 +936,7 @@ $ npm install hexo-generator-sitemap@1 --save
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -821,7 +953,7 @@ $ npm install hexo-generator-sitemap@1 --save
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
