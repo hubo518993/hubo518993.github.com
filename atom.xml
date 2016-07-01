@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.linkio.cc/archives/"/>
-  <updated>2016-06-13T03:14:06.000Z</updated>
+  <updated>2016-07-01T08:49:03.000Z</updated>
   <id>http://blog.linkio.cc/archives/</id>
   
   <author>
@@ -14,6 +14,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS日期，时间计算小结</title>
+    <link href="http://blog.linkio.cc/archives/2016/07/01/iOS%E6%97%A5%E6%9C%9F%EF%BC%8C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E5%B0%8F%E7%BB%93/"/>
+    <id>http://blog.linkio.cc/archives/2016/07/01/iOS日期，时间计算小结/</id>
+    <published>2016-07-01T08:47:32.000Z</published>
+    <updated>2016-07-01T08:49:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;项目中用到了日历，日期的计算，做一下总结。&lt;/p&gt;
+&lt;p&gt;###字符串转化成NSDate&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)stringToDate:(&lt;span class=&quot;built_in&quot;&gt;NSString&lt;/span&gt;*)dateStr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateFormatter&lt;/span&gt; * formatter = [[&lt;span class=&quot;built_in&quot;&gt;NSDateFormatter&lt;/span&gt; alloc] init];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [formatter setDateFormat:&lt;span class=&quot;string&quot;&gt;@&quot;yyyy-MM-dd HH:mm:ss&quot;&lt;/span&gt;]; &lt;span class=&quot;comment&quot;&gt;// 年-月-日 时:分:秒&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; *date = [formatter dateFromString:dateStr];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###日期转换成字符串&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)dateToString:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt;*)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateFormatter&lt;/span&gt; * formatter = [[&lt;span class=&quot;built_in&quot;&gt;NSDateFormatter&lt;/span&gt; alloc] init];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [formatter setDateFormat:&lt;span class=&quot;string&quot;&gt;@&quot;MM,dd&quot;&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSString&lt;/span&gt; * dateString = [formatter stringFromDate:date];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;dateString = %@&quot;&lt;/span&gt;,dateString);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###获取一个月的总天数&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;built_in&quot;&gt;NSInteger&lt;/span&gt;)getNumberOfDaysInMonth:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; *)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; * calendar = [[&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; alloc] initWithCalendarIdentifier:&lt;span class=&quot;built_in&quot;&gt;NSGregorianCalendar&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;NSRange&lt;/span&gt; range = [calendar rangeOfUnit:&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitDay&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                   inUnit:&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitMonth&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                  forDate:date];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; range.length;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###获取指定日期的年月日&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt;)getDateInfo:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; *)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; * calendar = [[&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; alloc] initWithCalendarIdentifier:&lt;span class=&quot;built_in&quot;&gt;NSGregorianCalendar&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateComponents&lt;/span&gt; *comps = [calendar components:&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitYear&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitMonth&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitDay&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitHour&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitMinute&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitSecond&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitWeekday&lt;/span&gt; fromDate:date];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;年 = year = %ld&quot;&lt;/span&gt;,comps.year);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;月 = month = %ld&quot;&lt;/span&gt;,comps.month);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;日 = day = %ld&quot;&lt;/span&gt;,comps.day);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;时 = hour = %ld&quot;&lt;/span&gt;,comps.hour);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;分 = minute = %ld&quot;&lt;/span&gt;,comps.minute);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;秒 = second = %ld&quot;&lt;/span&gt;,comps.second);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;星期 =weekDay = %ld &quot;&lt;/span&gt;,comps.weekday);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###获取指定的日期是星期几&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt;)getWeekDayWithDate:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt;*)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; *calendar = [[&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; alloc] initWithCalendarIdentifier:&lt;span class=&quot;built_in&quot;&gt;NSGregorianCalendar&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateComponents&lt;/span&gt; *comps = [calendar components:&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitWeekday&lt;/span&gt; fromDate:date];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; @([comps weekday]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###获取指定的日期是几月&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (&lt;span class=&quot;built_in&quot;&gt;NSInteger&lt;/span&gt;)getMonthInfoWithDate:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; *)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; * calendar = [[&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; alloc] initWithCalendarIdentifier:&lt;span class=&quot;built_in&quot;&gt;NSGregorianCalendar&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateComponents&lt;/span&gt; *comps = [calendar components:&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitYear&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitMonth&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitDay&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitHour&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitMinute&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitSecond&lt;/span&gt;|&lt;span class=&quot;built_in&quot;&gt;NSCalendarUnitWeekday&lt;/span&gt; fromDate:date];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; comps.month;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###获取每月的第一天&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-(&lt;span class=&quot;built_in&quot;&gt;NSArray&lt;/span&gt;*)getFirstDayAllMonth:(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt;*)date&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSMutableArray&lt;/span&gt; *monthArray = [&lt;span class=&quot;built_in&quot;&gt;NSMutableArray&lt;/span&gt; arrayWithCapacity:&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; *gregorian = [[&lt;span class=&quot;built_in&quot;&gt;NSCalendar&lt;/span&gt; alloc] initWithCalendarIdentifier:&lt;span class=&quot;built_in&quot;&gt;NSGregorianCalendar&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;NSDateComponents&lt;/span&gt; *comp = [gregorian components:(&lt;span class=&quot;built_in&quot;&gt;NSYearCalendarUnit&lt;/span&gt; | &lt;span class=&quot;built_in&quot;&gt;NSMonthCalendarUnit&lt;/span&gt; | &lt;span class=&quot;built_in&quot;&gt;NSDayCalendarUnit&lt;/span&gt;) fromDate:[&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; date]];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [comp setDay:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [comp setHour:&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [comp setMinute:&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [comp setSecond:&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;[&lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt; getMonthInfoWithDate:[&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; date]]-[&lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt; getMonthInfoWithDate:date]+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; *firstDayOfMonthDate = [gregorian dateFromComponents:comp];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        comp.month --;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        [monthArray addObject:firstDayOfMonthDate];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    [monthArray enumerateObjectsUsingBlock:^(&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt;* obj, &lt;span class=&quot;built_in&quot;&gt;NSUInteger&lt;/span&gt; idx, &lt;span class=&quot;built_in&quot;&gt;BOOL&lt;/span&gt; * _Nonnull stop) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;NSLog&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;@&quot;%@&quot;&lt;/span&gt;,[obj descriptionWithLocale:[&lt;span class=&quot;built_in&quot;&gt;NSLocale&lt;/span&gt; currentLocale]]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; monthArray;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###setDateFormat使用的格式化代码&lt;br&gt;|年的显示                |月的显示        |日的显示|&lt;br&gt;|—————-    |—————————-|——-|&lt;br&gt;|YY：年的后面2位数字|M：显示单独的月份，1~12|d：显示单独的日期，1~31|&lt;br&gt;|YYYY：显示完整的年    |MM：显示2位的月份，01~12|dd：显示2位数的日期，01~31|&lt;br&gt;|                        |MMM：英文月份的缩写||&lt;br&gt;|                        |MMMM：完整的英文月份||&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;星期的显示&lt;/th&gt;
+&lt;th&gt;小时的显示&lt;/th&gt;
+&lt;th&gt;分钟的显示&lt;/th&gt;
+&lt;th&gt;秒的显示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;EEE：星期的英文缩写，Sun&lt;/td&gt;
+&lt;td&gt;h：12小时制，1~12&lt;/td&gt;
+&lt;td&gt;mm：显示分钟，0~59&lt;/td&gt;
+&lt;td&gt;ss：小时秒，0~59&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EEEE：星期的英文，Sunday&lt;/td&gt;
+&lt;td&gt;H：24小时制，0~23&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;k：24小时制，1~24&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;K：12小时制，0~11&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;具体&lt;a href=&quot;http://www.alexcurylo.com/2009/01/28/nsdateformatter-formatting/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###Tips&lt;br&gt;Xcode默认的NSLod打印出来的date，默认情况下是美国东部时区，即GMT-5，夏令时GMT-4。所以和北京时间GMT+8相差12到13小时。&lt;br&gt;所以打印NSDate的时候使用&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[[&lt;span class=&quot;built_in&quot;&gt;NSDate&lt;/span&gt; date] descriptionWithLocale:[&lt;span class=&quot;built_in&quot;&gt;NSLocale&lt;/span&gt; currentLocale]];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以输出当前时间。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;项目中用到了日历，日期的计算，做一下总结。&lt;/p&gt;
+&lt;p&gt;###字符串转化成NSDate&lt;/p&gt;
+&lt;figure class=&quot;highlight objc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://blog.linkio.cc/archives/categories/iOS/"/>
+    
+    
+      <category term="iOS" scheme="http://blog.linkio.cc/archives/tags/iOS/"/>
+    
+      <category term="objective-c" scheme="http://blog.linkio.cc/archives/tags/objective-c/"/>
+    
+  </entry>
   
   <entry>
     <title>Cordova for iOS项目搭建</title>
@@ -46,9 +127,9 @@
       <category term="iOS" scheme="http://blog.linkio.cc/archives/categories/iOS/"/>
     
     
-      <category term="iOS" scheme="http://blog.linkio.cc/archives/tags/iOS/"/>
-    
       <category term="cordova" scheme="http://blog.linkio.cc/archives/tags/cordova/"/>
+    
+      <category term="iOS" scheme="http://blog.linkio.cc/archives/tags/iOS/"/>
     
   </entry>
   
@@ -124,7 +205,7 @@
     <link href="http://blog.linkio.cc/archives/2016/06/01/%E4%BD%BF%E7%94%A8Hexo-Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
     <id>http://blog.linkio.cc/archives/2016/06/01/使用Hexo-Github搭建自己的博客/</id>
     <published>2016-06-01T13:27:17.000Z</published>
-    <updated>2016-06-02T13:50:08.000Z</updated>
+    <updated>2016-06-15T07:18:58.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;看惯了国内在线博客千篇一律的样子，博主毅然决然的打算自己搭建一套静态博客。某日在&lt;a href=&quot;http://gold.xitu.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;掘金&lt;/a&gt;上发现了一篇基于&lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo&lt;/a&gt;与github的静态博客搭建的文章，大爱这个简单又扩展方便的hexo。直到今日有时间便花了点时间搭建。&lt;/p&gt;
 &lt;h1 id=&quot;前期环境搭建&quot;&gt;&lt;a href=&quot;#前期环境搭建&quot; class=&quot;headerlink&quot; title=&quot;前期环境搭建&quot;&gt;&lt;/a&gt;前期环境搭建&lt;/h1&gt;&lt;p&gt;由于使用的是hexo与github page的搭配，所以首先需要安装git。&lt;/p&gt;
