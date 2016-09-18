@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.linkio.cc/archives/"/>
-  <updated>2016-07-01T09:08:45.000Z</updated>
+  <updated>2016-09-18T10:22:23.000Z</updated>
   <id>http://blog.linkio.cc/archives/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS10下权限Crash的问题</title>
+    <link href="http://blog.linkio.cc/archives/2016/09/18/iOS10%E4%B8%8B%E6%9D%83%E9%99%90Crash%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://blog.linkio.cc/archives/2016/09/18/iOS10下权限Crash的问题/</id>
+    <published>2016-09-18T10:20:59.000Z</published>
+    <updated>2016-09-18T10:22:23.000Z</updated>
+    
+    <content type="html">&lt;p&gt;iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：&lt;/p&gt;
+&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;This app has crashed because &lt;span class=&quot;keyword&quot;&gt;it&lt;/span&gt; attempted &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; access privacy-sensitive &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data &lt;span class=&quot;keyword&quot;&gt;without&lt;/span&gt; a usage description.  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;The app&#39;s Info.plist must &lt;span class=&quot;keyword&quot;&gt;contain&lt;/span&gt; an NSPhotoLibraryUsageDescription key &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; a &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; value explaining &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; user how &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; app uses this data.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;XCode 8下Archive打包应用上传store后也会有邮件提示错误&lt;/p&gt;
+&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;This app attempts &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; access privacy-sensitive data &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;without&lt;/span&gt; a usage description. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;The app&#39;s Info.plist must &lt;span class=&quot;keyword&quot;&gt;contain&lt;/span&gt; an NSPhotoLibraryUsageDescription key &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt; a &lt;span class=&quot;built_in&quot;&gt;string&lt;/span&gt; value explaining &lt;span class=&quot;keyword&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; user how &lt;span class=&quot;keyword&quot;&gt;the&lt;/span&gt; app uses this data.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Apple的提示已经很明确了，需要在&lt;code&gt;Info.plist&lt;/code&gt;里面添加相应的权限key。查询Apple的文档，找到以下解决办法。&lt;/p&gt;
+&lt;p&gt;使用source code方式打开&lt;code&gt;Info.plist&lt;/code&gt;，在里面添加相应的键值对。&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;key&amp;gt;NSPhotoLibraryUsageDescription&amp;lt;/key&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;string&amp;gt;&quot;&quot;需要您的同意才能读取媒体资料库&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;key&amp;gt;NSCameraUsageDescription&amp;lt;/key&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;string&amp;gt;&quot;&quot;需要您的同意才能使用相机&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;key&amp;gt;NSContactsUsageDescription&amp;lt;/key&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;string&amp;gt;&quot;&quot;需要您的同意才能使用通讯录&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;key&amp;gt;NSMicrophoneUsageDescription&amp;lt;/key&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;string&amp;gt;&quot;&quot;需要您的同意才能使用麦克风&amp;lt;/string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;key为固定的几个值，可以参考&lt;a href=&quot;https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CocoaKeys&lt;/a&gt;&lt;br&gt;string可以填写自己想要的内容。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：&lt;/p&gt;
+&lt;figure class=&quot;highlight applescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://blog.linkio.cc/archives/categories/iOS/"/>
+    
+    
+      <category term="iOS10" scheme="http://blog.linkio.cc/archives/tags/iOS10/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS日历，日期，时间小结</title>
