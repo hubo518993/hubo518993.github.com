@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：
-1234This app has crashed because it attempted to access privacy-sensitive data without a usage description.  The app&apos;s Info.plist must contain an NSPhotoLibrar">
+<meta name="description" content="升级iOS10之后，发现新安装的APP没有了推送。设置里面也找不到推送那一栏。简言之就是Apple修改了注册推送的方法，导致iOS10之前的接口无法使用。Apple在iOS10里面统一了之前多版本的推送通知，将本地推送与服务端推送统一成到了UserNotifications.framework里面，也允许开发者对推送做更多的操作。要让推送在iOS10系统注册成功，需要使用UserNotificat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS10下权限Crash的问题">
-<meta property="og:url" content="http://blog.linkio.cc/archives/2016/09/18/iOS10下权限Crash的问题/index.html">
+<meta property="og:title" content="iOS10系统推送兼容">
+<meta property="og:url" content="http://blog.linkio.cc/archives/2016/09/21/iOS10系统推送兼容/index.html">
 <meta property="og:site_name" content="Linkio">
-<meta property="og:description" content="iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：
-1234This app has crashed because it attempted to access privacy-sensitive data without a usage description.  The app&apos;s Info.plist must contain an NSPhotoLibrar">
-<meta property="og:updated_time" content="2016-09-18T10:22:23.000Z">
+<meta property="og:description" content="升级iOS10之后，发现新安装的APP没有了推送。设置里面也找不到推送那一栏。简言之就是Apple修改了注册推送的方法，导致iOS10之前的接口无法使用。Apple在iOS10里面统一了之前多版本的推送通知，将本地推送与服务端推送统一成到了UserNotifications.framework里面，也允许开发者对推送做更多的操作。要让推送在iOS10系统注册成功，需要使用UserNotificat">
+<meta property="og:updated_time" content="2016-09-21T08:41:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS10下权限Crash的问题">
-<meta name="twitter:description" content="iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：
-1234This app has crashed because it attempted to access privacy-sensitive data without a usage description.  The app&apos;s Info.plist must contain an NSPhotoLibrar">
+<meta name="twitter:title" content="iOS10系统推送兼容">
+<meta name="twitter:description" content="升级iOS10之后，发现新安装的APP没有了推送。设置里面也找不到推送那一栏。简言之就是Apple修改了注册推送的方法，导致iOS10之前的接口无法使用。Apple在iOS10里面统一了之前多版本的推送通知，将本地推送与服务端推送统一成到了UserNotifications.framework里面，也允许开发者对推送做更多的操作。要让推送在iOS10系统注册成功，需要使用UserNotificat">
 
 
 
@@ -116,7 +113,7 @@
   };
 </script>
 
-  <title> iOS10下权限Crash的问题 | Linkio </title>
+  <title> iOS10系统推送兼容 | Linkio </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +253,7 @@
             
             
               
-                iOS10下权限Crash的问题
+                iOS10系统推送兼容
               
             
           </h1>
@@ -268,8 +265,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-18T18:20:59+08:00" content="2016-09-18">
-              2016-09-18
+            <time itemprop="dateCreated" datetime="2016-09-21T16:39:40+08:00" content="2016-09-21">
+              2016-09-21
             </time>
           </span>
 
@@ -298,8 +295,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/18/iOS10下权限Crash的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/iOS10下权限Crash的问题/" itemprop="commentsCount"></span>
+                <a href="/2016/09/21/iOS10系统推送兼容/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/iOS10系统推送兼容/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,14 +319,9 @@
       
 
       
-        <p>iOS 10下老项目在调用手机相机、相册、通讯录时产生了crash，控制台打印：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This app has crashed because <span class="keyword">it</span> attempted <span class="keyword">to</span> access privacy-sensitive </span><br><span class="line">data <span class="keyword">without</span> a usage description.  </span><br><span class="line">The app's Info.plist must <span class="keyword">contain</span> an NSPhotoLibraryUsageDescription key </span><br><span class="line"><span class="keyword">with</span> a <span class="built_in">string</span> value explaining <span class="keyword">to</span> <span class="keyword">the</span> user how <span class="keyword">the</span> app uses this data.</span><br></pre></td></tr></table></figure>
-<p>XCode 8下Archive打包应用上传store后也会有邮件提示错误</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This app attempts <span class="keyword">to</span> access privacy-sensitive data </span><br><span class="line"><span class="keyword">without</span> a usage description. </span><br><span class="line">The app's Info.plist must <span class="keyword">contain</span> an NSPhotoLibraryUsageDescription key </span><br><span class="line"><span class="keyword">with</span> a <span class="built_in">string</span> value explaining <span class="keyword">to</span> <span class="keyword">the</span> user how <span class="keyword">the</span> app uses this data.</span><br></pre></td></tr></table></figure>
-<p>Apple的提示已经很明确了，需要在<code>Info.plist</code>里面添加相应的权限key。查询Apple的文档，找到以下解决办法。</p>
-<p>使用source code方式打开<code>Info.plist</code>，在里面添加相应的键值对。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;""需要您的同意才能读取媒体资料库&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;""需要您的同意才能使用相机&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSContactsUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;""需要您的同意才能使用通讯录&lt;/string&gt;</span><br><span class="line">&lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;</span><br><span class="line">&lt;string&gt;""需要您的同意才能使用麦克风&lt;/string&gt;</span><br></pre></td></tr></table></figure>
-<p>key为固定的几个值，可以参考<a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html" target="_blank" rel="external">CocoaKeys</a><br>string可以填写自己想要的内容。</p>
+        <p>升级iOS10之后，发现新安装的APP没有了推送。设置里面也找不到推送那一栏。简言之就是Apple修改了注册推送的方法，导致iOS10之前的接口无法使用。<br>Apple在iOS10里面统一了之前多版本的推送通知，将本地推送与服务端推送统一成到了<code>UserNotifications.framework</code>里面，也允许开发者对推送做更多的操作。<br>要让推送在iOS10系统注册成功，需要使用<code>UserNotifications.framework</code>的新方法。<br>首先就是在<code>AppDelegate</code>文件里引入头文件<code>UserNotifications.framework</code>。<br>然后在<code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>方法里面加上新的推送注册语句。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(isIOS10_Or_Later)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//iOS10特有</span></span><br><span class="line">        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];</span><br><span class="line">        <span class="comment">// 必须写代理，不然无法监听通知的接收与点击</span></span><br><span class="line">        center.delegate = <span class="keyword">self</span>;</span><br><span class="line">        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(<span class="built_in">BOOL</span> granted, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">            <span class="keyword">if</span> (granted) &#123;</span><br><span class="line">                <span class="comment">// 点击允许</span></span><br><span class="line">                [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) &#123;</span><br><span class="line">                    </span><br><span class="line">                &#125;];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 点击不允许</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (isIOS8_Or_Later) &#123;</span><br><span class="line">        <span class="built_in">UIUserNotificationSettings</span> *settings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes: (<span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span> | <span class="built_in">UIRemoteNotificationTypeSound</span>) categories:<span class="literal">nil</span>];</span><br><span class="line">        [[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:settings];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [application registerForRemoteNotificationTypes:(<span class="built_in">UIRemoteNotificationTypeBadge</span>|<span class="built_in">UIRemoteNotificationTypeSound</span>|<span class="built_in">UIRemoteNotificationTypeAlert</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [application registerForRemoteNotifications];</span><br></pre></td></tr></table></figure>
+<p>然后将<code>UNUserNotificationCenter</code>的几个代理实现通知的点击事件。</p>
 
       
     </div>
@@ -360,17 +352,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/01/iOS日期，时间计算小结/" rel="next" title="iOS日历，日期，时间小结">
-                <i class="fa fa-chevron-left"></i> iOS日历，日期，时间小结
+              <a href="/2016/09/18/iOS10下权限Crash的问题/" rel="next" title="iOS10下权限Crash的问题">
+                <i class="fa fa-chevron-left"></i> iOS10下权限Crash的问题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/21/iOS10系统推送兼容/" rel="prev" title="iOS10系统推送兼容">
-                iOS10系统推送兼容 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,8 +384,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/18/iOS10下权限Crash的问题/"
-           data-title="iOS10下权限Crash的问题" data-url="http://blog.linkio.cc/archives/2016/09/18/iOS10下权限Crash的问题/">
+      <div class="ds-thread" data-thread-key="2016/09/21/iOS10系统推送兼容/"
+           data-title="iOS10系统推送兼容" data-url="http://blog.linkio.cc/archives/2016/09/21/iOS10系统推送兼容/">
       </div>
     
   </div>

@@ -255,6 +255,128 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/21/iOS10系统推送兼容/" itemprop="url">
+                  iOS10系统推送兼容
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T16:39:40+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/21/iOS10系统推送兼容/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/iOS10系统推送兼容/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>升级iOS10之后，发现新安装的APP没有了推送。设置里面也找不到推送那一栏。简言之就是Apple修改了注册推送的方法，导致iOS10之前的接口无法使用。<br>Apple在iOS10里面统一了之前多版本的推送通知，将本地推送与服务端推送统一成到了<code>UserNotifications.framework</code>里面，也允许开发者对推送做更多的操作。<br>要让推送在iOS10系统注册成功，需要使用<code>UserNotifications.framework</code>的新方法。<br>首先就是在<code>AppDelegate</code>文件里引入头文件<code>UserNotifications.framework</code>。<br>然后在<code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>方法里面加上新的推送注册语句。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(isIOS10_Or_Later)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//iOS10特有</span></span><br><span class="line">        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];</span><br><span class="line">        <span class="comment">// 必须写代理，不然无法监听通知的接收与点击</span></span><br><span class="line">        center.delegate = <span class="keyword">self</span>;</span><br><span class="line">        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(<span class="built_in">BOOL</span> granted, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">            <span class="keyword">if</span> (granted) &#123;</span><br><span class="line">                <span class="comment">// 点击允许</span></span><br><span class="line">                [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) &#123;</span><br><span class="line">                    </span><br><span class="line">                &#125;];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 点击不允许</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (isIOS8_Or_Later) &#123;</span><br><span class="line">        <span class="built_in">UIUserNotificationSettings</span> *settings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes: (<span class="built_in">UIRemoteNotificationTypeBadge</span> | <span class="built_in">UIRemoteNotificationTypeAlert</span> | <span class="built_in">UIRemoteNotificationTypeSound</span>) categories:<span class="literal">nil</span>];</span><br><span class="line">        [[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:settings];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [application registerForRemoteNotificationTypes:(<span class="built_in">UIRemoteNotificationTypeBadge</span>|<span class="built_in">UIRemoteNotificationTypeSound</span>|<span class="built_in">UIRemoteNotificationTypeAlert</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    [application registerForRemoteNotifications];</span><br></pre></td></tr></table></figure>
+<p>然后将<code>UNUserNotificationCenter</code>的几个代理实现通知的点击事件。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/18/iOS10下权限Crash的问题/" itemprop="url">
                   iOS10下权限Crash的问题
                 </a>
@@ -1259,7 +1381,7 @@ $ npm install hexo-generator-sitemap@1 --save
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
